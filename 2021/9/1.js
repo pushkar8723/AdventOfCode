@@ -6,18 +6,18 @@ process.stdin.on('data', function (chunk) {
     // Write your code here
     const map = lines.map(line => line.split('').map(i => parseInt(i)));
 
-    const getNeighbors = (i, j, visited = new Set()) => {
+    const getNeighbors = (i, j) => {
         const neighbors = [];
-        if (map[i-1] && map[i-1][j] !== undefined && !visited.has(`${i-1}:${j}`)) {
+        if (map[i-1] && map[i-1][j] !== undefined) {
             neighbors.push(map[i-1][j]);
         }
-        if (map[i+1] && map[i+1][j] !== undefined && !visited.has(`${i+1}:${j}`)) {
+        if (map[i+1] && map[i+1][j] !== undefined) {
             neighbors.push(map[i+1][j]);
         }
-        if (map[i][j-1] !== undefined && !visited.has(`${i}:${j-1}`)) {
+        if (map[i][j-1] !== undefined) {
             neighbors.push(map[i][j-1]);
         }
-        if (map[i][j+1] !== undefined && !visited.has(`${i}:${j+1}`)) {
+        if (map[i][j+1] !== undefined) {
             neighbors.push(map[i][j+1]);
         }
         return neighbors;
