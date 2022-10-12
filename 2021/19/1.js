@@ -233,9 +233,9 @@ process.stdin.on('data', function (chunk) {
 
     const tryMatch = (scannerA, scannerB) => {
         for (let k = 0; k < 48; k++) {
-            for (let l = 0; l < scannerB.beacons.length; l++) {
-                for (let m = 0; m < scannerA.beacons.length; m++) {
-                    const rotatedScanner = scannerB.getRotatedScanner(k);
+            const rotatedScanner = scannerB.getRotatedScanner(k);
+            for (let l = 0; l < scannerB.beacons.length/2; l++) {
+                for (let m = 0; m < scannerA.beacons.length/2; m++) {
                     const dx = scannerA.beacons[m].x - rotatedScanner.beacons[l].x;
                     const dy = scannerA.beacons[m].y - rotatedScanner.beacons[l].y;
                     const dz = scannerA.beacons[m].z - rotatedScanner.beacons[l].z;
