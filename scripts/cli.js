@@ -111,7 +111,8 @@ const run = async (date, file, env) => {
                 });
             fs.writeFileSync(`${env.AOC_YEAR}/${date}/input.txt`, resp.data);
         } catch (e) {
-            console.log(e);
+            console.log(e.message);
+            return;
         }
     }
     const ext = file.split('.').slice(-1)[0];
