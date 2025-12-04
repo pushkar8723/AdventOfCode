@@ -7,7 +7,7 @@ process.stdin.on('data', function (chunk) {
     const map = lines.map((line) => line.split(''));
 
     /**
-     * Given the cordinates, checks if the cell at the coordinate
+     * Given the coordinates, checks if the cell at the coordinate
      * has a roll.
      * @param {Number} x 
      * @param {Number} y 
@@ -29,25 +29,25 @@ process.stdin.on('data', function (chunk) {
         for (let i = 0; i < map.length; i++) {
             for (let j = 0; j < map[i].length; j++) {
     
-                // Check adjecent cells if current cell has a roll.
+                // Check adjacent cells if current cell has a roll.
                 if (map[i][j] === '@') {
-                    // Counter for adjecent cell that has rolls.
+                    // Counter for adjacent cell that has rolls.
                     let adj = 0;
                     
-                    // Check all the neighbours
+                    // Check all the neighbors
                     for (let x = i - 1; x <= i + 1; x++) {
                         for (let y = j - 1; y <= j + 1; y++) {
 
                             // Don't check current cell
                             if (x !== i || y !== j) {
-                                // Increase counter when adjecent
+                                // Increase counter when adjacent
                                 // roll is found
                                 adj += check(x, y) ? 1 : 0;
                             }
                         }
                     }
     
-                    // If adjecent cells have less than 4 rolls
+                    // If adjacent cells have less than 4 rolls
                     // then it can be removed.
                     if (adj < 4) {
                         removableRolls.push({ x: i, y: j });
@@ -65,11 +65,13 @@ process.stdin.on('data', function (chunk) {
     let total = 0;
     // Rolls removed in each round.
     let round = [];
+
+    // Repeat until no more rolls can be removed.
     do {
         // Get the list of removable rolls.
         const removableRolls = getRollsToBeRemoved();
 
-        // Exit looo if no rolls are found.
+        // Exit loop if no rolls are found.
         if (removableRolls.length === 0) {
             break;
         }
