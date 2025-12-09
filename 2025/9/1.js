@@ -32,8 +32,8 @@ process.stdin.on('data', function (chunk) {
     // So now we can brute force the inside check.
 
     // Get unique sorted x and y coordinates
-    const xs = points.map(p => p[0]).filter((_, index) => index % 2 === 1).sort((a, b) => a - b);
-    const ys = points.map(p => p[1]).filter((_, index) => index % 2 === 1).sort((a, b) => a - b);
+    const xs = Array.from(new Set(points.map(p => p[0]))).sort((a, b) => a - b);
+    const ys = Array.from(new Set(points.map(p => p[1]))).sort((a, b) => a - b);
 
     // Map original coordinates to compressed indices
     const xMap = new Map();
