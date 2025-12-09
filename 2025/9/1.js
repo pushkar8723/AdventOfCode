@@ -28,10 +28,12 @@ process.stdin.on('data', function (chunk) {
 
     // Part 2: Find the maximum area of rectangle fully inside the shape formed by the points
     // Compress coordinates to minimize space
+    // This reduces space from 10^12 to 248 x 248 = 61504
+    // So now we can brute force the inside check.
 
     // Get unique sorted x and y coordinates
-    const xs = points.map(p => p[0]).sort((a, b) => a - b);
-    const ys = points.map(p => p[1]).sort((a, b) => a - b);
+    const xs = points.map(p => p[0]).filter((_, index) => index % 2 === 1).sort((a, b) => a - b);
+    const ys = points.map(p => p[1]).filter((_, index) => index % 2 === 1).sort((a, b) => a - b);
 
     // Map original coordinates to compressed indices
     const xMap = new Map();
@@ -112,7 +114,11 @@ process.stdin.on('data', function (chunk) {
 
     // mark points outside the shape with 'x'.
     fill(0, 0);
+    fill(0, compressedMap[0].length - 1);
+    fill(compressedMap.length - 1, 0);
     fill(compressedMap.length - 1, compressedMap[0].length - 1);
+
+    // console.log(compressedMap.map(row => row.join('')).join('\n'));
 
     /**
      * Move along the border of the rectangle and check if any point is 'x'.
