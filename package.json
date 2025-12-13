@@ -10,9 +10,9 @@
     "inquirer": "^7.0.0",
     "jsdom": "^15.2.1",
     "nodejs-chinese-remainder": "0.0.6",
-    "readline-sync": "^1.4.10"
+    "readline-sync": "^1.4.10",
+    "z3-solver": "^4.15.4"
   },
-  "devDependencies": {},
   "scripts": {
     "cli": "node scripts/cli.js"
   },
